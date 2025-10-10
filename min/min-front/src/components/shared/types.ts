@@ -6,12 +6,16 @@ export interface User {
 }
 
 export interface Message {
-    
+    id: string
+    text: string
+    senderId: string
+    timestamp: Date
+    status: string
 }
 
 export interface Conversation {
     id: string
     user: User
-    lastMessage: string
+    lastMessage: Message
     unreadCount: number
 }

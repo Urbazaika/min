@@ -25,7 +25,7 @@ export const DialogCard: React.FC<DialogCardProps> = ({
             />
             <div className={`${styles.info}`}>
                 <h3 className={`${styles.name}`}>{conversation.user.name}</h3>
-                <p className={`${styles.last_msg}`}>{conversation.lastMessage}</p>
+                <p className={`${styles.last_msg}`}>{conversation.lastMessage.text}</p>
             </div>
             {
                 conversation.unreadCount > 0 

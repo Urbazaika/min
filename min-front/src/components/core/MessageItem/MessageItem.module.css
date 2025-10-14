@@ -1,0 +1,18 @@
+.container {
+    max-width: 50%;
+    margin-bottom: 10px;
+}
+
+.own {
+    margin-left: auto;
+}
+
+.messageContent {
+    border: 2px solid #fff;
+    border-radius: 20px;
+}
+
+.text {
+    color: #fff;
+    text-align: center;
+}

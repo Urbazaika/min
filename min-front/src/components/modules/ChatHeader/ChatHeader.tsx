@@ -17,7 +17,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
                 <div className={styles.name}>{companion.user.name}</div>
                 <div className={styles.status}>{companion.user.online ? 'online' : 'offline'}</div>
             </div>
-            <AvatarImage src={companion.user.avatar} size="small" />
+            <AvatarImage src={companion.user.avatar} size="medium" />
         </header>
     )
 }

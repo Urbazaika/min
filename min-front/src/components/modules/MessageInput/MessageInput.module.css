@@ -1,11 +1,12 @@
 .container {
-    width: 500px;
+    width: 35vw;
     min-height: 20px;
     border: 2px solid #fff;
     border-radius: 35px;
     display: flex;
     align-items: center;
     padding: 10px;
+    margin: 0 auto 0 auto;
 }
 
 .textarea {
@@ -17,4 +18,5 @@
     background-color: transparent;
     color: #fff;
     margin-left: 10px;
+    width: 95%;
 }

@@ -16,9 +16,7 @@ export const Chat: React.FC<ChatProps> = ({conversation, messages, currentUserId
     return (
         <div className={styles.container}>
             <ChatHeader companion={conversation} />
-            <div className={styles.messagesContainer}>
-                <MessageList messages={messages} currentUserId={currentUserId}/>
-            </div>
+            <MessageList messages={messages} currentUserId={currentUserId}/>
             <MessageInput onSendMessage={onSendMessage}/>
         </div>
     )

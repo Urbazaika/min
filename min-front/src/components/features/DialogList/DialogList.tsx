@@ -11,7 +11,7 @@ export const DialogList: React.FC<DialogList> = ({conversation}) => {
     return (
         <div className={`${styles.dialog_list}`}>
             {conversation.map(conv => (
-                <DialogCard conversation={conv} isActive={false} onClick={() => console.log('print')}/>
+                <DialogCard conversation={conv} isActive={true} onClick={() => console.log('print')}/>
             ))}
         </div>
     )

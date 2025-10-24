@@ -7,13 +7,17 @@ interface DialogCardProps {
     conversation: Conversation
     isActive?: boolean
     onClick: () => void
+    currentUserId: string
 }
 
 export const DialogCard: React.FC<DialogCardProps> = ({
     conversation,
     isActive = false,
-    onClick
+    onClick,
+    currentUserId
 }) => {
+    const isLastMessageOwn = conversation.lastMessage.senderId === currentUserId
+
     return (
         <div 
             className={`${styles.dialog_wrapper} ${isActive ? styles.active : ''}`}
@@ -25,7 +29,7 @@ export const DialogCard: React.FC<DialogCardProps> = ({
             />
             <div className={`${styles.info}`}>
                 <h3 className={`${styles.name}`}>{conversation.user.name}</h3>
-                <p className={`${styles.last_msg}`}>{conversation.lastMessage.text}</p>
+                <p className={`${styles.last_msg}`}>{isLastMessageOwn ? 'you: ' : ''}{conversation.lastMessage.text}</p>
             </div>
             {
                 conversation.unreadCount > 0 

@@ -2,20 +2,28 @@ export interface User {
     id: string
     name: string
     avatar: string
-    online: boolean
+    status: 'online' | 'offline'
 }
 
 export interface Message {
     id: string
-    text: string
     senderId: string
+    text: string
     timestamp: Date
-    status: string
+    status: 'sent' | 'delivered' | 'read'
 }
 
 export interface Conversation {
     id: string
-    user: User
+    participants: User[]
     lastMessage: Message
     unreadCount: number
+    messages: Message[]
+}
+
+export interface ChatState {
+    conversations: Conversation[]
+    activeConversationId: string | null
+    currentUser: User
+    users: User[]
 }

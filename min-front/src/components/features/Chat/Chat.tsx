@@ -6,13 +6,19 @@ import styles from './Chat.module.css'
 import { MessageList } from "../../modules/MessageList/MessageList";
 
 interface ChatProps {
-    conversation: Conversation
+    conversation: Conversation | null
     messages: Message[]
     currentUserId: string
     onSendMessage: (text: string) => void 
 }
 
 export const Chat: React.FC<ChatProps> = ({conversation, messages, currentUserId, onSendMessage}) => {
+    if (!conversation) {
+        return (
+            <div className={styles.container}></div>
+        )
+    }
+
     return (
         <div className={styles.container}>
             <ChatHeader companion={conversation} />

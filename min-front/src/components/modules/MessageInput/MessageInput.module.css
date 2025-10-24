@@ -10,13 +10,13 @@
 }
 
 .textarea {
+    flex: 1;
     border: 0 none;
-    resize: none;
     padding: 0;
     vertical-align: middle;
     outline: none;
     background-color: transparent;
     color: #fff;
     margin-left: 10px;
-    width: 95%;
+    margin-right: 10px;
 }

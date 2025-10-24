@@ -4,14 +4,28 @@ import { DialogCard } from "../../modules/DialogCard/DialogCard";
 import styles from "./DialogList.module.css"
 
 interface DialogList {
-    conversation: Conversation[]
+    conversations: Conversation[]
+    activeConversationId?: string
+    onConversationSelect: (conv: Conversation) => void
+    currentUserId: string
 }
 
-export const DialogList: React.FC<DialogList> = ({conversation}) => {
+export const DialogList: React.FC<DialogList> = ({
+    conversations,
+    activeConversationId,
+    onConversationSelect,
+    currentUserId
+}) => {
     return (
         <div className={`${styles.dialog_list}`}>
-            {conversation.map(conv => (
-                <DialogCard conversation={conv} isActive={true} onClick={() => console.log('print')}/>
+            {conversations.map(conv => (
+                <DialogCard 
+                    key={conv.id}
+                    conversation={conv} 
+                    isActive={conv.id === activeConversationId} 
+                    onClick={() => {onConversationSelect(conv)}}
+                    currentUserId={currentUserId}
+                />
             ))}
         </div>
     )

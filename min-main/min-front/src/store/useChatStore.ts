@@ -6,68 +6,19 @@ interface ChatStore extends ChatState {
     sendMessage: (conversationId: string, text: string) => void
     markAsRead: (conversationId: string) => void
     searchConversations: (query: string) => Conversation[]
-    getConversationById: (conversationId: string) => Conversation | undefined
-    getUserById: (userId: string) => User | undefined
 } 
 
 const generateConversationId = (firstId: string, secondId: string) => {
     return `${firstId}_${secondId}`
 }
 
-const currentUser: User = {
-    id: '123',
-    name: 'www',
-    avatar: './public/1dc4744b-86a2-4d0e-bb81-95dd3e287df8 1.png',
-    status: 'online'
-}
+const currentUser: User = {}
 
 const mockUsers: User[] = [
     currentUser,
-    {
-        id: '223',
-        name: 'www2',
-        avatar: './public/1dc4744b-86a2-4d0e-bb81-95dd3e287df8 1.png',
-        status: 'online'
-    },
 ]
 
-const mockConversation: Conversation[] = [
-    {
-        id: generateConversationId('123', '223'),
-        participants: [currentUser, mockUsers[1]],
-        lastMessage: {
-            id: '3',
-            text: 'herll',
-            senderId: 'www2',
-            timestamp: new Date(Date.now() - 12000),
-            status: 'read'
-        },
-        unreadCount: 0,
-        messages: [
-            {
-                id: '1',
-                text: 'herll',
-                senderId: 'www2',
-                timestamp: new Date(Date.now() - 30000),
-                status: 'read'
-            },
-            {
-                id: '2',
-                text: 'herll',
-                senderId: 'www',
-                timestamp: new Date(Date.now() - 28000),
-                status: 'read'
-            },
-            {
-                id: '3',
-                text: 'herll',
-                senderId: 'www2',
-                timestamp: new Date(Date.now() - 12000),
-                status: 'read'
-            },
-        ]
-    }
-]
+const mockConversation: Conversation[] = []
 
 export const useChatStore = create<ChatStore>((set, get) => ({
     conversations: mockConversation,
@@ -107,7 +58,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 
     markAsRead: (conversationId: string) => {
         set(state => ({
-            conversations: state.conversations.map(conv => conv.id === conversationId ? {  } :)
+            conversations: state.conversations.map(conv => conv.id)
         }))
     },
 

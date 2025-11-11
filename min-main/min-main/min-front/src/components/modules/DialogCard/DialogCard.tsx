@@ -1,7 +1,9 @@
 import type React from "react";
 import { AvatarImage } from "../../core/AvatarImage/AvatarImage";
 import styles from "./DialogCard.module.css"
-import type { Conversation } from "../../shared/types";
+import type { Conversation, Message } from "../../shared/types";
+import { useChatStore } from "../../../store/useChatStore";
+import { useShallow } from "zustand/shallow";
 
 interface DialogCardProps {
     conversation: Conversation
@@ -14,9 +16,15 @@ export const DialogCard: React.FC<DialogCardProps> = ({
     conversation,
     isActive = false,
     onClick,
-    currentUserId
+    currentUserId,
 }) => {
-    const isLastMessageOwn = conversation.lastMessage.senderId === currentUserId
+
+    const {getLastMessage} = useChatStore(useShallow( state => ({
+        getLastMessage: state.getLastMessage})
+    ))
+
+    const lastMessage = getLastMessage(conversation.id)
+    const isLastMessageOwn = lastMessage?.senderId === currentUserId
 
     return (
         <div 
@@ -29,7 +37,7 @@ export const DialogCard: React.FC<DialogCardProps> = ({
             />
             <div className={`${styles.info}`}>
                 <h3 className={`${styles.name}`}>{conversation.participants[1].name}</h3>
-                <p className={`${styles.last_msg}`}>{isLastMessageOwn ? 'you: ' : ''}{conversation.lastMessage.text}</p>
+                <p className={`${styles.last_msg}`}>{isLastMessageOwn ? 'you: ' : ''}{lastMessage?.text}</p>
             </div>
             {
                 conversation.unreadCount > 0 

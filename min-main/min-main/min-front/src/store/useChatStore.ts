@@ -6,6 +6,7 @@ interface ChatStore extends ChatState {
     sendMessage: (conversationId: string, text: string) => void
     markAsRead: (conversationId: string) => void
     searchConversations: (query: string) => Conversation[]
+    getLastMessage: (conversationId: string) => Message | undefined
     // getConversationById: (conversationId: string) => Conversation | undefined
     // getUserById: (userId: string) => User | undefined
 } 
@@ -41,13 +42,6 @@ const mockConversation: Conversation[] = [
     {
         id: generateConversationId('1', '2'),
         participants: [currentUser, mockUsers[1]],
-        lastMessage: {
-            id: '3',
-            text: '3',
-            senderId: 'www2',
-            timestamp: new Date(Date.now() - 12000),
-            status: 'read'
-        },
         unreadCount: 0,
         messages: [
             {
@@ -76,13 +70,6 @@ const mockConversation: Conversation[] = [
     {
         id: generateConversationId('1', '3'),
         participants: [currentUser, mockUsers[2]],
-        lastMessage: {
-            id: '2',
-            text: 'herll',
-            senderId: 'www',
-            timestamp: new Date(Date.now() - 28000),
-            status: 'read'
-        },
         unreadCount: 0,
         messages: [
             {
@@ -156,5 +143,16 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         return conversations.filter(conv => {
             return conv.participants.find(p => p.id !== get().currentUser.id)?.name.toLowerCase().includes(queryLowerCase)
         })
+    },
+
+    getLastMessage: (conversationId: string) => {
+        const { conversations } = get()
+        let lastMessage = undefined
+        conversations.forEach((conv) => {
+            if (conv.id == conversationId) {
+                lastMessage = conv.messages[conv.messages.length - 1] 
+            }
+        })
+        return lastMessage  
     }
 }))

@@ -13,6 +13,7 @@ export const ChatPage: React.FC = memo(() => {
         setActiveConversation,
         sendMessage,
         searchConversations,
+        getLastMessage,
         // getConversationById
     } = useChatStore()
 
@@ -50,6 +51,7 @@ export const ChatPage: React.FC = memo(() => {
                 currentUserId={currentUser.id}
                 searchQuery={searchQuery}
                 onSearchChange={handleSearchChange}
+                getLastMessage={getLastMessage}
             />
             <Chat 
                 conversation={activeConversation}  

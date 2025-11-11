@@ -2,7 +2,7 @@ import type React from "react"
 import styles from './Sidebar.module.css'
 import { SearchInput } from "../../modules/SearchInput/SearchInput"
 import { DialogList } from "../DialogList/DialogList"
-import type { Conversation } from "../../shared/types"
+import type { Conversation, Message } from "../../shared/types"
 
 interface SideBarProps {
     conversations: Conversation[]
@@ -11,6 +11,7 @@ interface SideBarProps {
     currentUserId: string
     searchQuery: string
     onSearchChange: (query: string) => void
+    getLastMessage: (converstionId: string) => Message | undefined
 }
 
 export const SideBar: React.FC<SideBarProps> = ({
@@ -19,8 +20,10 @@ export const SideBar: React.FC<SideBarProps> = ({
     onConversationSelect,
     currentUserId,
     searchQuery,
-    onSearchChange
+    onSearchChange,
+    getLastMessage
 }) => {
+
     return (
         <div className={styles.container}>
             <div className={styles.queryContainer}>
@@ -32,6 +35,7 @@ export const SideBar: React.FC<SideBarProps> = ({
             <div className={styles.listContainer}>
                 <DialogList 
                     conversations={conversations}
+                    getLastMessage={getLastMessage}
                     activeConversationId={activeConversationId}
                     onConversationSelect={onConversationSelect}
                     currentUserId={currentUserId}

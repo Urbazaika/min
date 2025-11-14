@@ -20,14 +20,16 @@ export const Chat: React.FC<ChatProps> = ({conversation, currentUserId, onSendMe
 
     if (!conversation) {
         return (
-            <div className={styles.container}></div>
+            <div className={`${styles.container} ${styles.hasntChat}`}><h2>!!!click to chat!!!</h2></div>
         )
     }
 
     return (
         <div className={styles.container}>
             <ChatHeader companion={conversation} />
-            <MessageList messages={messages} currentUserId={currentUserId}/>
+            <div className={styles.messagesWrapper}>
+                <MessageList messages={messages} currentUserId={currentUserId}/>
+            </div>
             <MessageInput onSendMessage={onSendMessage}/>
         </div>
     )

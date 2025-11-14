@@ -14,7 +14,6 @@ export const ChatPage: React.FC = memo(() => {
         sendMessage,
         searchConversations,
         getLastMessage,
-        // getConversationById
     } = useChatStore()
 
     const [searchQuery, setSearchQuery] = useState('')

@@ -4,3 +4,22 @@
     width: 70vw;   
     height: 95vh; 
 }
+
+.messagesWrapper {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: start; */
+}
+
+.hasntChat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hasntChat h2 {
+    color: white;
+    font-size: 40px;
+}

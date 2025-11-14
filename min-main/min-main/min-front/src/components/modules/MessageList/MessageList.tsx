@@ -14,7 +14,7 @@ export const MessageList: React.FC<MessageListProps> = ({
 }) => {
     return (
         <div className={styles.container}>
-            {messages?.map((message) => {
+            {messages?.slice().reverse().map((message) => {
                     const isOwn = message.senderId === currentUserId
 
                     return (

@@ -1,7 +1,7 @@
 import type React from "react";
 import { AvatarImage } from "../../core/AvatarImage/AvatarImage";
 import styles from "./DialogCard.module.css"
-import type { Conversation, Message } from "../../shared/types";
+import type { Conversation } from "../../shared/types";
 import { useChatStore } from "../../../store/useChatStore";
 import { useShallow } from "zustand/shallow";
 

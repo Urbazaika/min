@@ -14,10 +14,10 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
         <header className={styles.header}>
             <div></div>
             <div className={styles.info}>
-                <div className={styles.name}>{companion.user.name}</div>
-                <div className={styles.status}>{companion.user.online ? 'online' : 'offline'}</div>
+                <div className={styles.name}>{companion.participants[1].name}</div>
+                <div className={styles.status}>{companion.participants[1].status}</div>
             </div>
-            <AvatarImage src={companion.user.avatar} size="medium" />
+            <AvatarImage src={companion.participants[1].avatar} size="medium" />
         </header>
     )
 }

@@ -2,44 +2,40 @@ import type React from "react"
 import styles from './Sidebar.module.css'
 import { SearchInput } from "../../modules/SearchInput/SearchInput"
 import { DialogList } from "../DialogList/DialogList"
-import type { Conversation } from "../../shared/types"
-import { useMemo, useState } from "react"
+import type { Conversation, Message } from "../../shared/types"
 
 interface SideBarProps {
     conversations: Conversation[]
-    activeConversationId?: string
-    onConversationSelect: (conv: Conversation) => void
+    activeConversationId?: string | null
+    onConversationSelect: (conversationId: string) => void
     currentUserId: string
+    searchQuery: string
+    onSearchChange: (query: string) => void
+    getLastMessage: (converstionId: string) => Message | undefined
 }
 
 export const SideBar: React.FC<SideBarProps> = ({
     conversations,
     activeConversationId,
     onConversationSelect,
-    currentUserId
+    currentUserId,
+    searchQuery,
+    onSearchChange,
+    getLastMessage
 }) => {
-    const [searchQuery, setSearchQuery] = useState('')
-    const handleSearchChange = (v: string) => {setSearchQuery(v)}
-
-    const filteredConversations = useMemo(() => {
-        if (!searchQuery.trim()) return conversations
-
-        return conversations.filter((conv) => {
-            return conv.user.name.toLowerCase().includes(searchQuery.toLowerCase())
-        })
-    }, [conversations, searchQuery])
 
     return (
         <div className={styles.container}>
             <div className={styles.queryContainer}>
                 <SearchInput 
                     value={searchQuery}
-                    onChange={handleSearchChange}
+                    onChange={onSearchChange}
                 />
             </div>
             <div className={styles.listContainer}>
                 <DialogList 
-                    conversations={filteredConversations}
+                    conversations={conversations}
+                    getLastMessage={getLastMessage}
                     activeConversationId={activeConversationId}
                     onConversationSelect={onConversationSelect}
                     currentUserId={currentUserId}

@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "jsx": "react-jsx", // или "react", "preserve", "react-native" в зависимости от фреймворка
-    "strict": true,
-    "esModuleInterop": true
-  }
-}
